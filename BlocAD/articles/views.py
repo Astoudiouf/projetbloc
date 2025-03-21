@@ -40,9 +40,8 @@ def register_user(request):
 @login_required(login_url="/login/")
 def details_articles(request, article_id):
     article = get_object_or_404(articles, id=article_id)  
-    url_panier = reverse('panier', kwargs={'article_id': article.id})  
-
-    return render(request, 'article/details_articles.html', {'article': article, 'url_panier': url_panier})
+    # url_panier = reverse('panier', kwargs={'article_id': article.id})  
+    return render(request, 'article/details_articles.html', {'article': article})
 
 @login_required(login_url="/login/")
 def new_articles(request):
@@ -106,12 +105,12 @@ def delete_article(request, panier_id):
 
 
 
-
+@login_required(login_url="/login/")
 def ajouter_au_panier(request, article_id):
     article = get_object_or_404(articles, id=article_id)
-    panier, created = Panier.objects.get_or_create(user=request.user)  
+    panier = Panier.objects.filter(user=request.user).first()
     panier.articles.add(article)  
-    return redirect(reverse('panier'))
+    return redirect('panier')
 
 
 @login_required(login_url="/login/") 
@@ -130,7 +129,7 @@ def supprimer_du_panier(request, article_id):
     return redirect('voir_panier')  
 
 
-
+@login_required(login_url="/login/")
 def passer_commande(request):
     if request.method == "POST":
         nom = request.POST.get('nom')
@@ -143,6 +142,7 @@ def passer_commande(request):
     return render(request, 'commande/commande.html')
 
 
+@login_required(login_url="/login/")
 def liste_commandes(request):
     commandes = Commande.objects.all()
     return render(request, 'commande/commande.html', {'commandes': commandes})

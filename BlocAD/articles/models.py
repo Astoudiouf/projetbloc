@@ -16,8 +16,8 @@ class articles(models.Model):
   
 
 class Panier(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    articles = models.ForeignKey(articles, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    article = models.ManyToManyField(articles)
     quantite = models.PositiveIntegerField(default=1)
 
     def __str__(self):
