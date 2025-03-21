@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg ml-auto mr-auto mt-10">
+  <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Connexion</h2>
+  
+  <form method="POST" action="{% url 'login' %}" class="space-y-4">
+      {% csrf_token %}
+
+      <!-- Champ Email -->
+      <div>
+          <label for="username" class="block text-sm font-medium text-gray-700">username</label>
+          <input type="username" id="username" name="username" required
+                 class="w-full mt-1 p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Champ Mot de passe -->
+      <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+          <input type="password" id="password" name="password" required
+                 class="w-full mt-1 p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Bouton de connexion -->
+      <button type="submit"
+              class="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+          Se connecter
+      </button>
+  </form>
+
+  <!-- Lien d'inscription -->
+  <p class="text-center text-gray-600 mt-4 text-sm">
+      Pas encore de compte ? 
+       <a href="{% url 'register' %}" class="text-blue-600 hover:underline">Créer un compte</a>
+  </p>
+</div>
+{% endblock %}

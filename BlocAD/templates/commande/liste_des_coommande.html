@@ -1,0 +1,10 @@
+<h1>Liste des commandes</h1>
+    {% if commandes %}
+        <ul>
+            {% for commande in commandes %}
+                <li>Commande de {{ commande.nom }} - Total: {{ commande.total }}€</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucune commande enregistrée.</p>
+    {% endif %}

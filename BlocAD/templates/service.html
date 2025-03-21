@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center mb-4">
+  {% for article in article %}
+  <div class="border p-4 shadow-lg rounded w-64 mx-auto">
+    {% if article.image %}
+      <img src="{{ article.image.url }}" class="w-full h-40 object-cover rounded">
+    {% else %}
+      <p class="text-center text-gray-500">Aucune image disponible</p>
+    {% endif %}
+    
+    <p class="text-center text-md font-semibold mt-2">{{ article.titre }}</p>
+    <h5 class="text-center font-serif italic text-gray-700 mt-2">{{ article.prix }} F CFA</h5>
+    
+    <!-- Utilisation correcte du lien comme bouton -->
+    <button class="w-full h-10 rounded flex items-center justify-end mt-2 ">
+    <a href="{% url 'details_articles' article.id %}" 
+       class="bg-gray-500 hover:bg-blue-700 text-white font-bold w-full h-10 rounded flex items-center justify-center mt-2">
+       Détails
+    </a>
+    </button>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

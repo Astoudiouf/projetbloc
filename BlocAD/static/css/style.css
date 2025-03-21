@@ -1,0 +1,15 @@
+.container{
+    
+    
+   
+}
+.container img{
+    width: 220vw;
+    height: 40vw;
+    image-resolution: initial;
+    object-fit: cover;
+    margin: 10px;
+    background: linear-gradient(to right, rgb(41, 14, 149), #fff, #fff, #fff);
+
+}
+
